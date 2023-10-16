@@ -11,5 +11,11 @@ export const AvailableProductSchema = ProductSchema.shape({
   products: ProductSchema,
 });
 
+export const AvailableProductsSchema = Yup.object({
+  Count: Yup.number(),
+  Items: Yup.array().of(ProductSchema),
+});
+
 export type Product = Yup.InferType<typeof ProductSchema>;
 export type AvailableProduct = Yup.InferType<typeof AvailableProductSchema>;
+export type AvailableProducts = Yup.InferType<typeof AvailableProductsSchema>;
