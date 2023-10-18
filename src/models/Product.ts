@@ -8,8 +8,14 @@ export const ProductSchema = Yup.object({
 });
 
 export const AvailableProductSchema = ProductSchema.shape({
-  count: Yup.number().integer().min(0).required().defined().default(0),
+  products: ProductSchema,
+});
+
+export const AvailableProductsSchema = Yup.object({
+  Count: Yup.number(),
+  Items: Yup.array().of(ProductSchema),
 });
 
 export type Product = Yup.InferType<typeof ProductSchema>;
 export type AvailableProduct = Yup.InferType<typeof AvailableProductSchema>;
+export type AvailableProducts = Yup.InferType<typeof AvailableProductsSchema>;
